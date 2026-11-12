@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hustler - India's Premier Freelance Marketplace</title>
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts & Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --brand-saffron: #FF5722;
+            --brand-purple: #145c8c;
+            --brand-teal: #00BFA5;
+            --dark-surface: #121829;
+            --light-bg: #F8F9FD;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--light-bg);
+            color: #2D3748;
+            scroll-behavior: smooth;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.75rem;
+            background: linear-gradient(135deg, var(--brand-saffron), var(--brand-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #4A5568;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: var(--brand-saffron);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #2E0854 0%, #1A0430 100%);
+            color: #FFFFFF;
+            border-bottom-left-radius: 36px;
+            border-bottom-right-radius: 36px;
+            padding: 80px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-badge {
+            background: rgba(255, 87, 34, 0.2);
+            color: #FF8A65;
+            border: 1px solid rgba(255, 87, 34, 0.4);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .hero-title {
+            font-weight: 800;
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FFAB40, #00E676);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .path-card {
+            border: none;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #FFFFFF;
+        }
+        .path-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .category-chip {
+            background: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            border-radius: 50px;
+            padding: 10px 22px;
+            font-weight: 600;
+            color: #4A5568;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        .category-chip:hover {
+            background: var(--brand-saffron);
+            color: #FFFFFF;
+            border-color: var(--brand-saffron);
+        }
+
+        .gig-card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #FFFFFF;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .gig-card:hover {
+            transform: translateY(-5px);
+        }
+        .gig-img {
+            height: 190px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Form Styling */
+        .form-section-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 1px solid #EDF2F7;
+        }
+        .form-control, .form-select {
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 2px solid #E2E8F0;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--brand-saffron);
+            box-shadow: 0 0 0 0.25rem rgba(255, 87, 34, 0.15);
+        }
+        
+        .btn-brand-primary {
+            background: linear-gradient(135deg, var(--brand-saffron), #E64A19);
+            color: #FFFFFF;
+            font-weight: 700;
+            border-radius: 12px;
+            border: none;
+            padding: 12px 28px;
+            transition: opacity 0.2s ease;
+        }
+        .btn-brand-primary:hover {
+            color: #FFFFFF;
+            opacity: 0.92;
+        }
+
+        .btn-brand-teal {
+            background: linear-gradient(135deg, var(--brand-teal), #00897B);
+            color: #FFFFFF;
+            font-weight: 700;
+            border-radius: 12px;
+            border: none;
+            padding: 12px 28px;
+        }
+        .btn-brand-teal:hover {
+            color: #FFFFFF;
+            opacity: 0.92;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-section { border-radius: 0; padding: 50px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-white py-3 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-lightning-charge-fill text-warning"></i> Hustler
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gigs">Featured Gigs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#register-section">Why Hustler?</a></li>
+                </ul>
+                <div class="d-flex gap-2 mt-3 mt-lg-0">
+                    <a href="#login-section" class="btn btn-outline-dark fw-bold px-4 rounded-3">Log In</a>
+                    <a href="#register-section" class="btn btn-brand-primary">Join Hustler</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7">
+                    <span class="badge hero-badge px-3 py-2 rounded-pill mb-3">
+                        <i class="bi bi-flag-fill me-1"></i> Designed for India's Gig Economy
+                    </span>
+                    <h1 class="hero-title mb-4">
+                        Find Expert Indian Talent or Start <span class="text-gradient">Hustling Today</span>
+                    </h1>
+                    <p class="lead text-white-50 mb-4 me-lg-4">
+                        Hire verified developers, designers, video creators, and CA professionals in India, or offer your skills and get paid directly to your bank account.
+                    </p>
+
+                    <!-- Search Input -->
+                    <form action="#gigs" method="GET" class="row g-2 bg-white p-2 rounded-4 shadow-lg me-lg-4">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-0 text-muted"><i class="bi bi-search fs-5"></i></span>
+                                <input type="text" name="search" class="form-control border-0 shadow-none ps-0" placeholder="Try 'React Developer', 'GST Filing', or 'Reels Editor'..." required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-brand-primary w-100 py-3">Search</button>
+                        </div>
+                    </form>
+
+                    <div class="d-flex align-items-center gap-4 mt-4 text-white-50 small">
+                        <span><i class="bi bi-check-circle-fill text-success me-1"></i> Verified UPI / NEFT</span>
+                        <span><i class="bi bi-check-circle-fill text-success me-1"></i> 0% Fee for Starters</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 text-center">
+                    <img src="https://png.pngtree.com/background/20250125/original/pngtree-a-laptopequipped-freelancer-hard-at-work-on-their-desk-photo-picture-image_12482610.jpg" alt="Freelancer working online" class="img-fluid rounded-4 shadow-lg border border-2 border-white border-opacity-25">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dual Role Pathways -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-800 display-6">What brings you to Hustler?</h2>
+                <p class="text-muted">Choose your path and unlock opportunities across India</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="path-card p-4 p-lg-5 text-center shadow-sm h-100 border-top border-5 border-warning">
+                        <div class="badge bg-warning text-dark fs-4 p-3 rounded-circle mb-3"><i class="bi bi-briefcase-fill"></i></div>
+                        <h3 class="fw-bold mb-3">Hire on Hustler</h3>
+                        <p class="text-muted mb-4">Post your requirements, receive custom quotes within minutes, and build your business with top-rated Indian freelancers.</p>
+                        <a href="#register-section" class="btn btn-outline-dark fw-bold px-4 py-2 rounded-3">Hire Freelancers</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="path-card p-4 p-lg-5 text-center shadow-sm h-100 border-top border-5 border-success">
+                        <div class="badge bg-success fs-4 p-3 rounded-circle mb-3"><i class="bi bi-rocket-takeoff-fill"></i></div>
+                        <h3 class="fw-bold mb-3">Become a Hustler</h3>
+                        <p class="text-muted mb-4">Set your own pricing, build a digital portfolio, work from anywhere in India, and keep up to 95% of your earnings.</p>
+                        <a href="#register-section" class="btn btn-brand-teal px-4 py-2 rounded-3">Start Earning</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section id="categories" class="py-5 bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1">Trending Categories</h2>
+                    <p class="text-muted mb-0">Browse services tailored to Indian startups and businesses</p>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <a href="#gigs" class="category-chip"><i class="bi bi-code-slash me-2"></i>Web & App Development</a>
+                <a href="#gigs" class="category-chip"><i class="bi bi-palette me-2"></i>Logo & Brand Design</a>
+                <a href="#gigs" class="category-chip"><i class="bi bi-instagram me-2"></i>Reels & Content Creation</a>
+                <a href="#gigs" class="category-chip"><i class="bi bi-file-earmark-spreadsheet me-2"></i>GST & CA Services</a>
+                <a href="#gigs" class="category-chip"><i class="bi bi-translate me-2"></i>Hindi & Regional Translation</a>
+                <a href="#gigs" class="category-chip"><i class="bi bi-megaphone me-2"></i>Digital Marketing & SEO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Service Gigs -->
+    <section id="gigs" class="py-5">
+        <div class="container py-3">
+            <h2 class="fw-bold mb-1">Featured Services</h2>
+            <p class="text-muted mb-4">Handpicked services delivered by top Indian talent</p>
+
+            <div class="row g-4">
+                <!-- Gig Card 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gig-card h-100 d-flex flex-column">
+                        <img src="https://images.pexels.com/photos/34803990/pexels-photo-34803990.jpeg?cs=srgb&dl=pexels-dkomov-34803990.jpg&fm=jpg" alt="Web Development Gig" class="gig-img">
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary-subtle text-primary fw-bold">Development</span>
+                                <span class="small fw-bold text-warning"><i class="bi bi-star-fill"></i> 4.9 (120)</span>
+                            </div>
+                            <h5 class="fw-bold mb-3">I will build a responsive React web app for your business</h5>
+                            <p class="text-muted small mb-3">Rahul Sharma • Senior Full Stack Dev (Bengaluru)</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+                                <span class="text-muted small">Starting at</span>
+                                <span class="fs-5 fw-bold text-success">₹4,999</span>
+                            </div>
+                            <a href="#register-section" class="btn btn-outline-dark w-100 mt-3 rounded-3 fw-bold">Order Service</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gig Card 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gig-card h-100 d-flex flex-column">
+                        <img src="https://www.plannthat.com/wp-content/uploads/2023/12/How-To-Harness-Instagrams-New-Content-Creation-Tools-To-Streamline-Your-Social-Media-Marketing-2.png" alt="Social Media Content Creation" class="gig-img">
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-danger-subtle text-danger fw-bold">Social Media</span>
+                                <span class="small fw-bold text-warning"><i class="bi bi-star-fill"></i> 5.0 (88)</span>
+                            </div>
+                            <h5 class="fw-bold mb-3">I will design viral Instagram reels and YouTube thumbnails</h5>
+                            <p class="text-muted small mb-3">Priya Patel • Video Creator & Designer (Mumbai)</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+                                <span class="text-muted small">Starting at</span>
+                                <span class="fs-5 fw-bold text-success">₹1,499</span>
+                            </div>
+                            <a href="#register-section" class="btn btn-outline-dark w-100 mt-3 rounded-3 fw-bold">Order Service</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gig Card 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gig-card h-100 d-flex flex-column">
+                        <img src="https://exceldatapro.com/wp-content/uploads/2017/04/Startup-Cost-Calculator.jpg" alt="Taxation and CA Filing" class="gig-img">
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-success-subtle text-success fw-bold">Finance & Legal</span>
+                                <span class="small fw-bold text-warning"><i class="bi bi-star-fill"></i> 4.8 (64)</span>
+                            </div>
+                            <h5 class="fw-bold mb-3">I will file your GST returns and handle startup accounting</h5>
+                            <p class="text-muted small mb-3">Amit Verma (CA) • Finance Specialist (Delhi)</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+                                <span class="text-muted small">Starting at</span>
+                                <span class="fs-5 fw-bold text-success">₹2,999</span>
+                            </div>
+                            <a href="#register-section" class="btn btn-outline-dark w-100 mt-3 rounded-3 fw-bold">Order Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forms Container (Registration & Login) -->
+    <section class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="row g-5">
+                
+                <!-- Registration Form Section -->
+                <div class="col-lg-7" id="register-section">
+                    <div class="form-section-card p-4 p-md-5">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="badge bg-warning text-dark fw-bold">Step 1</span>
+                            <h3 class="fw-bold mb-0">Join Hustler Today</h3>
+                        </div>
+                        <p class="text-muted mb-4">Create your account to start hiring freelancers or selling your skills in India.</p>
+
+                        <form action="#hero" method="POST" class="row g-3">
+                            <div class="col-12">
+                                <label for="account-type" class="form-label fw-bold">I want to:</label>
+                                <select id="account-type" name="account_type" class="form-select" required>
+                                    <option value="">-- Choose Account Type --</option>
+                                    <option value="hire">Hire Talent (Client)</option>
+                                    <option value="work">Offer Services (Freelancer / Hustler)</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="fullname" class="form-label fw-bold">Full Name</label>
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="e.g. Aarav Mehta" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="reg-email" class="form-label fw-bold">Email Address</label>
+                                <input type="email" class="form-control" id="reg-email" name="email" placeholder="aarav@example.com" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label fw-bold">Mobile Number (+91)</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="9876543210" pattern="[0-9]{10}" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="city" class="form-label fw-bold">City / State</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="e.g. Pune, Maharashtra" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="reg-password" class="form-label fw-bold">Password</label>
+                                <input type="password" class="form-control" id="reg-password" name="password" minlength="8" placeholder="At least 8 characters" required>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
+                                    <label class="form-check-label text-muted small" for="terms">
+                                        I agree to Hustler's Terms of Service and Privacy Policy.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-brand-primary w-100 py-3">Create Free Account</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Login Form Section -->
+                <div class="col-lg-5" id="login-section">
+                    <div class="form-section-card p-4 p-md-5 h-100 d-flex flex-column justify-content-center border-top border-5 border-danger">
+                        <h3 class="fw-bold mb-2">Welcome Back</h3>
+                        <p class="text-muted mb-4">Log in to manage your active orders & profile.</p>
+
+                        <form action="#hero" method="POST" class="row g-3">
+                            <div class="col-12">
+                                <label for="login-email" class="form-label fw-bold">Email or Mobile Number</label>
+                                <input type="text" class="form-control" id="login-email" name="user_id" placeholder="Enter registered email/phone" required>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label for="login-password" class="form-label fw-bold mb-0">Password</label>
+                                    <a href="#" class="text-decoration-none small text-warning fw-bold">Forgot?</a>
+                                </div>
+                                <input type="password" class="form-control" id="login-password" name="password" placeholder="Enter password" required>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-dark w-100 py-3 fw-bold rounded-3">Log In</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-4 pt-3 border-top">
+                            <p class="text-muted small mb-0">New to Hustler? <a href="#register-section" class="text-warning fw-bold text-decoration-none">Create an account above</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <h4 class="fw-bold text-warning mb-3"><i class="bi bi-lightning-charge-fill"></i> Hustler</h4>
+                    <p class="text-white-50 small">Empowering India's next generation of digital freelancers, creative professionals, and high-growth startups.</p>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold mb-3">Categories</h6>
+                    <ul class="list-unstyled text-white-50 small lh-lg">
+                        <li><a href="#categories" class="text-white-50 text-decoration-none">Web Dev</a></li>
+                        <li><a href="#categories" class="text-white-50 text-decoration-none">Graphic Design</a></li>
+                        <li><a href="#categories" class="text-white-50 text-decoration-none">Video Editing</a></li>
+                        <li><a href="#categories" class="text-white-50 text-decoration-none">Tax & CA</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled text-white-50 small lh-lg">
+                        <li><a href="#" class="text-white-50 text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Trust & Safety</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Payment Protection</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold mb-3">Payment Partners</h6>
+                    <div class="d-flex gap-2 text-warning fs-4">
+                        <i class="bi bi-upc-scan"></i>
+                        <i class="bi bi-bank"></i>
+                        <i class="bi bi-credit-card-2-front"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <p class="text-center text-white-50 small mb-0">&copy; 2026 Hustler Marketplace Pvt. Ltd. Made for India.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
